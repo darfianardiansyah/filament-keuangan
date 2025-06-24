@@ -4,7 +4,7 @@ Ini adalah project Laravel yang menggunakan [Filament](https://filamentphp.com/)
 
 ## 🚀 Fitur Utama
 
-- Laravel 10+ & Filament v3
+- Laravel 12+ & Filament v3
 - Autentikasi bawaan Laravel
 - Manajemen CRUD menggunakan Filament Resource
 - Chart, Table, dan Widget interaktif
@@ -58,7 +58,6 @@ Jalankan perintah ini di terminal untuk membuat user:
 
 ```
 php artisan make:filament-user
-
 ```
 Setelah registrasi, login ke panel admin di:
 
