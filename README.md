@@ -7,8 +7,7 @@ Ini adalah project Laravel yang menggunakan [Filament](https://filamentphp.com/)
 - Laravel 12+ & Filament v3
 - Autentikasi bawaan Laravel
 - Manajemen CRUD menggunakan Filament Resource
-- Chart, Table, dan Widget interaktif
-- Role & Permission (opsional, dengan Spatie)
+- Chart, Table, dan Widget dari Filament
 - Desain modern dan responsif
 
 ## 🛠️ Instalasi
