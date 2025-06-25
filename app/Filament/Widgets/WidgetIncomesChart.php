@@ -21,7 +21,7 @@ class WidgetIncomesChart extends ChartWidget
         : now()->subDays(30);
 
         $endDate = ! empty($this->filters['endDate'])
-        ? Carbon::parse($this->filters['endDate'])
+        ? Carbon::parse($this->filters['endDate'])->endOfDay()
         : now();
 
         $data = Trend::query(Transaction::incomes())
