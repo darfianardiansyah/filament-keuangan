@@ -26,6 +26,7 @@ class TransactionResource extends Resource
                     ->relationship('category', 'name')
                     ->required(),
                 Forms\Components\DatePicker::make('date_transaction')
+                    ->default(now())
                     ->required(),
                 Forms\Components\TextInput::make('amount')
                     ->required()
