@@ -3,10 +3,10 @@ namespace App\Filament\Widgets;
 
 use App\Models\Transaction;
 use Filament\Widgets\ChartWidget;
+use Filament\Widgets\Concerns\InteractsWithPageFilters;
 use Flowframe\Trend\Trend;
 use Flowframe\Trend\TrendValue;
 use Illuminate\Support\Carbon;
-use Filament\Widgets\Concerns\InteractsWithPageFilters;
 
 class WidgetIncomesChart extends ChartWidget
 {
@@ -16,13 +16,13 @@ class WidgetIncomesChart extends ChartWidget
 
     protected function getData(): array
     {
-        $startDate = ! is_null($this->filters['startDate'] ?? null) ?
-            Carbon::parse($this->filters['startDate']) :
-            null;
+        $startDate = ! empty($this->filters['startDate'])
+        ? Carbon::parse($this->filters['startDate'])
+        : now()->subDays(30);
 
-        $endDate = ! is_null($this->filters['endDate'] ?? null) ?
-            Carbon::parse($this->filters['endDate']) :
-            now();
+        $endDate = ! empty($this->filters['endDate'])
+        ? Carbon::parse($this->filters['endDate'])
+        : now();
 
         $data = Trend::query(Transaction::incomes())
             ->between(
@@ -35,10 +35,9 @@ class WidgetIncomesChart extends ChartWidget
         return [
             'datasets' => [
                 [
-                    'label' => 'Pemasukan',
-                    'data'  => $data->map(fn(TrendValue $value) => $value->aggregate),
-                    'backgroundColor' => '#28a745',
-                    'borderColor'     => '#3ca354',
+                    'label'           => 'Pemasukan',
+                    'data'            => $data->map(fn(TrendValue $value) => $value->aggregate),
+                    'backgroundColor' => 'rgb(var(--success))',
                 ],
             ],
             'labels'   => $data->map(fn(TrendValue $value) => $value->date),

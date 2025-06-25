@@ -16,14 +16,13 @@ class WidgetExpansesChart extends ChartWidget
 
     protected function getData(): array
     {
+        $startDate = ! empty($this->filters['startDate'])
+        ? Carbon::parse($this->filters['startDate'])
+        : now()->subDays(30);
 
-        $startDate = ! is_null($this->filters['startDate'] ?? null) ?
-        Carbon::parse($this->filters['startDate']) :
-        null;
-
-        $endDate = ! is_null($this->filters['endDate'] ?? null) ?
-        Carbon::parse($this->filters['endDate']) :
-        now();
+        $endDate = ! empty($this->filters['endDate'])
+        ? Carbon::parse($this->filters['endDate'])
+        : now();
 
         $data = Trend::query(Transaction::expanses())
             ->between(
@@ -38,8 +37,7 @@ class WidgetExpansesChart extends ChartWidget
                 [
                     'label'           => 'Pengeluaran',
                     'data'            => $data->map(fn(TrendValue $value) => $value->aggregate),
-                    'backgroundColor' => '#dc3545',
-                    'borderColor'     => '#db4f5c',
+                    'backgroundColor' => 'rgb(var(--danger))',
                 ],
             ],
             'labels'   => $data->map(fn(TrendValue $value) => $value->date),
