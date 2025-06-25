@@ -14,20 +14,20 @@ class Dashboard extends BaseDashboard
 
     public function filtersForm(Form $form): Form
     {
-        return $form
-            ->schema([
-                Section::make()
-                    ->schema([
-                        DatePicker::make('startDate')
-                            ->default(fn() => Carbon::now()->startOfMonth())
-                            ->maxDate(fn(Get $get) => $get('endDate') ?: now()),
+    return $form
+        ->schema([
+            Section::make()
+                ->schema([
+                    DatePicker::make('startDate')
+                        ->default(fn() => Carbon::now()->startOfMonth())
+                        ->maxDate(fn(Get $get) => $get('endDate') ?: now()),
 
-                        DatePicker::make('endDate')
-                            ->default(fn() => Carbon::now()->endOfMonth())
-                            ->minDate(fn(Get $get) => $get('startDate') ?: now())
-                            ->maxDate(now()),
-                    ])
-                    ->columns(2),
-            ]);
+                    DatePicker::make('endDate')
+                        ->default(fn() => Carbon::now()->endOfMonth())
+                        ->minDate(fn(Get $get) => $get('startDate') ?: now()),
+                        // ->maxDate(now()),
+                ])
+                ->columns(2),
+        ]);
     }
 }
