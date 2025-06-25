@@ -37,7 +37,8 @@ class WidgetExpansesChart extends ChartWidget
                 [
                     'label'           => 'Pengeluaran',
                     'data'            => $data->map(fn(TrendValue $value) => $value->aggregate),
-                    'backgroundColor' => 'rgb(var(--danger))',
+                    'backgroundColor' => '#ff6384',
+                    'borderColor'     => '#ff6384',
                 ],
             ],
             'labels'   => $data->map(fn(TrendValue $value) => $value->date),

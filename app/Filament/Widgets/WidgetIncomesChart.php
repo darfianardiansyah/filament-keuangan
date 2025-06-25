@@ -37,7 +37,8 @@ class WidgetIncomesChart extends ChartWidget
                 [
                     'label'           => 'Pemasukan',
                     'data'            => $data->map(fn(TrendValue $value) => $value->aggregate),
-                    'backgroundColor' => 'rgb(var(--success))',
+                    'backgroundColor' => '#36a2eb',
+                    'borderColor'     => '#36a2eb',
                 ],
             ],
             'labels'   => $data->map(fn(TrendValue $value) => $value->date),
